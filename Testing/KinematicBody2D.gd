@@ -5,7 +5,7 @@ var velocity = Vector2()
 var auto = false
 var movimientos = []
 var movActual = 0
-export var movMaximo = 20
+export var movMaximo = 80
 var stop = false
 
 func get_input():
@@ -45,3 +45,8 @@ func _physics_process(delta):
 	get_input()
 	if not stop:
 		velocity = move_and_slide(velocity)
+
+
+
+func _on_Base_body_exited(body):
+	stop = true
