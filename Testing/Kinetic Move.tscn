@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Kinetic Move.gd" type="Script" id=1]
+[ext_resource path="res://root.gd" type="Script" id=1]
 [ext_resource path="res://Base.gd" type="Script" id=2]
 [ext_resource path="res://circle.png" type="Texture" id=3]
 [ext_resource path="res://Sprite.gd" type="Script" id=4]

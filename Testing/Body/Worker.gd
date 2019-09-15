@@ -1,4 +1,4 @@
-extends "res://KinematicBody2D.gd"
+extends "res://body/bot.gd"
 
 var mov = 0 
 export var maxmov = 200
@@ -20,17 +20,13 @@ func _physics_process(delta):
 		mov = 0
 		money = money + 10 + int(money*monInc) #parche para hacer sentir que tener plata en mano tambien esta bueno
 		bl = 1
-		print(money)
+		#print(money)
 	if bl >= 1:
 		bl+=1
 		label.set_text(String(money))
 		$Sprite.modulate = Color(4 - bl/maxbl*4 , 0.9 + (1 - bl/maxbl)*3, 0.4 + 1 - bl/maxbl)
 		if bl == maxbl:
 			bl = 0
-
-
-func interaction(otroBot):
-	return
 
 
 func get_character():

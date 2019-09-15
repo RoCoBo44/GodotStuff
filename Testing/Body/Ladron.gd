@@ -1,4 +1,4 @@
-extends "res://KinematicBody2D.gd"
+extends "res://body/bot.gd"
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -25,7 +25,6 @@ func _physics_process(delta):
 		$Sprite.modulate = Color(1 + 1 - blink/blinkMax,1 - blink/blinkMax,0)
 		blink+=1
 		if blink >= blinkMax:
-			print("blinked")
 			stole = false
 			blink = 0
 
