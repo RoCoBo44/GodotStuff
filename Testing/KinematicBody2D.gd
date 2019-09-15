@@ -1,5 +1,6 @@
 extends KinematicBody2D
 export (int) var speed = 100
+onready var label = get_node("Label")
 
 var maxIda 
 var velocity = Vector2()
@@ -9,32 +10,24 @@ var movActual = 0
 export var movMaximo = 10
 var stop = false
 var ida 
+var money = 0
+
 
 var timer
 
 
 func get_input():
-	
-	if not stop:
-		velocity = Vector2()	
-		
-		#Change to auto
-		if Input.is_key_pressed(KEY_K):
-			auto = !auto
-		
-		#Directions MAnual
-		if (!auto):
-		    if Input.is_action_pressed('ui_right'):
-		        velocity.x += 1
-		    if Input.is_action_pressed('ui_left'):
-		        velocity.x -= 1
-		    if Input.is_action_pressed('ui_down'):
-		        velocity.y += 1
-		    if Input.is_action_pressed('ui_up'):
-		        velocity.y -= 1
-		else:
-			#ida is used to slide to a direction
-			if (ida > 0):
+
+	 #change to Auto
+	if Input.is_action_pressed('ui_accept'):
+		auto = !auto
+	if !auto:
+		_manual()
+
+func _automatic():
+		velocity = Vector2()
+		#ida is used to slide to a direction
+		if (ida > 0):
 				ida-=1
 				velocity.x = movimientos[movActual]
 				velocity.y = movimientos[movActual+1]
@@ -44,10 +37,21 @@ func get_input():
 					movActual = movActual+2
 					if (movActual >= movMaximo):
 						movActual=0
-			
 		velocity = velocity.normalized() * speed
+
+func _manual():
 	
-	
+	velocity = Vector2()
+	if Input.is_action_pressed('ui_right'):
+		velocity.x += 1
+	if Input.is_action_pressed('ui_left'):
+		velocity.x -= 1
+	if Input.is_action_pressed('ui_down'):
+		velocity.y += 1
+	if Input.is_action_pressed('ui_up'):
+		velocity.y -= 1
+	velocity = velocity.normalized() * speed
+
 func _ready():
 	randomize()
 	_cargar_movimientos()
@@ -77,6 +81,8 @@ func _cargar_movimientos():
 func _physics_process(delta):
 	if not stop:
 		get_input()
+		if auto:
+			_automatic()
 		velocity = move_and_slide(velocity)
 
 func _on_Area2D_area_exited(area):
@@ -86,4 +92,18 @@ func _on_Area2D_area_exited(area):
 		timer.start()
 		#print('wall')
 	else:
-		print("hey bro,wsa")
+		if (area.get_name() == 'Area2D' and area.get_parent().get_stop() == false and stop == false):
+			#print("this ",get_character()," n : ",get_name(), " interacted with ",get_character()," n : ",area.get_parent().get_name())
+			interaction(area.get_parent())
+
+func interaction(otroBot):
+	return null
+
+func get_stop():
+	return stop
+	
+func get_character():
+	return 0
+
+func get_money():
+	return money

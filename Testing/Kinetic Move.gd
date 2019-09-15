@@ -7,7 +7,7 @@ extends Node2D
 export var cantidad = 4
 var radius = 240
 var angle_step
-onready var bot = preload("res://Body/Bot.tscn")
+onready var bot = preload("res://Body/Worker.tscn")
 onready var botContainer = get_node("botsContainer")
 var center 
 var screen_size = OS.get_screen_size()
@@ -22,7 +22,7 @@ func _ready():
 	for i in range(0,cantidad):
 		var direction = Vector2(cos(angle), sin(angle))
 		var node = bot.instance()
-		node.set_name("boti{0}".format(i))
+		node.set_name("boti-".format(i))
 		node.scale = Vector2(tam,tam)
 		node.position = center + direction * radius
 		add_child(node)

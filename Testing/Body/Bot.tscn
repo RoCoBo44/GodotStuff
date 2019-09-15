@@ -23,4 +23,13 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2( 0.53, 0.51 )
 shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -5.16399
+margin_top = -7.8088
+margin_right = 39.416
+margin_bottom = 6.1912
+rect_scale = Vector2( 0.23, 0.23 )
+text = "4"
+align = 1
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
