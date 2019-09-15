@@ -32,4 +32,5 @@ margin_bottom = 6.1912
 rect_scale = Vector2( 0.23, 0.23 )
 text = "4"
 align = 1
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
