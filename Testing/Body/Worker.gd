@@ -18,7 +18,8 @@ func _physics_process(delta):
 
 	if (mov >= maxmov) and active:
 		mov = 0
-		money = money + 10 + int(money*monInc) #parche para hacer sentir que tener plata en mano tambien esta bueno
+		#money = money + 10 + int(money*monInc) #parche para hacer sentir que tener plata en mano tambien esta bueno
+		money = money + 10
 		bl = 1
 		#print(money)
 	if bl >= 1:

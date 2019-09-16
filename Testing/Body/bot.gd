@@ -129,7 +129,10 @@ func get_money():
 	return money
 
 func reduce_money(value):
-	money-=value
+	if (money-value > 0):
+		money-=value
+	else:
+		money = 0
 	label.set_text(String(money))
 
 func _on_Area2D_area_entered(area):

@@ -1,6 +1,6 @@
 extends "res://body/bot.gd"
 export var stealingRate = 0.3
-export var gettingRate = 0.3
+export var gettingRate = 0.5
 var stole = false
 var blink = 0
 var blinkMax = 100.0
@@ -26,8 +26,11 @@ func get_character():
 
 func interaction(otroBot):
 	if otroBot.get_character() == 2 and otroBot.is_active():
-		var newmoney = int(otroBot.get_money()*stealingRate)
-		otroBot.reduce_money(newmoney)
+		var newmoney = 30 #int(otroBot.get_money()*stealingRate)
+		if otroBot.get_money() > newmoney:
+			money += newmoney
+		else:
+			money += otroBot.get_money()
 		var myMoney = ceil(newmoney*gettingRate)
 		newmoney -= myMoney
 		money += myMoney

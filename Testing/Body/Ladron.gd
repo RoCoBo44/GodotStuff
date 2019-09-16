@@ -13,10 +13,13 @@ func _ready():
 
 func interaction(otroBot):
 	if otroBot.get_character() == 1 and otroBot.is_active():
-		var newmoney = int(otroBot.get_money()* stealingRate)
+		var newmoney = 20 #int(otroBot.get_money()* stealingRate)
 		otroBot._damaged()
+		if otroBot.get_money() > newmoney:
+			money += newmoney
+		else:
+			money += otroBot.get_money()
 		otroBot.reduce_money(newmoney)
-		money += newmoney
 		label.set_text(String(money))
 		stole = true
 
