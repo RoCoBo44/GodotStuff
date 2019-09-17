@@ -26,22 +26,22 @@ func get_character():
 
 func interaction(otroBot):
 	if otroBot.get_character() == 2 and otroBot.is_active():
-		var newmoney = 30 #int(otroBot.get_money()*stealingRate)
+		var newmoney = 15 #int(otroBot.get_money()*stealingRate)
 		if otroBot.get_money() > newmoney:
 			money += newmoney
+			otroBot.reduce_money(newmoney)
+			var myMoney = ceil(newmoney*gettingRate)
+			newmoney -= myMoney
+			if (newmoney > 0):
+				get_parent().get_parent()._giveGuardians(newmoney)
 		else:
 			money += otroBot.get_money()
-		var myMoney = ceil(newmoney*gettingRate)
-		newmoney -= myMoney
-		money += myMoney
+			otroBot.reduce_money(newmoney)
 		otroBot._damaged()
 		label.set_text(String(money))
 		stole = true
 		activeGuardian = true
 		timerToInactive.start(20)
-		print ("Money G:",newmoney)
-		if (newmoney > 0):
-			get_parent().get_parent()._giveGuardians(newmoney)
 
 func _physics_process(delta):
 	if stole:

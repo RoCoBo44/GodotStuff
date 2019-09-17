@@ -25,3 +25,30 @@ position = Vector2( 0, -0.0548553 )
 scale = Vector2( -0.054, 0.054 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
+
+[node name="Worker" type="Label" parent="."]
+margin_left = 29.0
+margin_top = 87.9999
+margin_right = 78.0
+margin_bottom = 104.0
+rect_scale = Vector2( 2.83, 2.66 )
+custom_colors/font_color = Color( 0.529412, 0.929412, 0.462745, 1 )
+text = "Worker"
+
+[node name="Ladron" type="Label" parent="."]
+margin_left = 29.0
+margin_top = 271.916
+margin_right = 78.0
+margin_bottom = 287.916
+rect_scale = Vector2( 2.83, 2.66 )
+custom_colors/font_color = Color( 0.937255, 0.384314, 0.384314, 1 )
+text = "Ladron"
+
+[node name="Guardian" type="Label" parent="."]
+margin_left = 29.0
+margin_top = 458.453
+margin_right = 78.0
+margin_bottom = 474.453
+rect_scale = Vector2( 2.83, 2.66 )
+custom_colors/font_color = Color( 0.384314, 0.470588, 0.937255, 1 )
+text = "Guardian"
