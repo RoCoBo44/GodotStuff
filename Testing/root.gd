@@ -17,14 +17,19 @@ var center
 var screen_size = OS.get_screen_size()
 var window_size = OS.get_window_size()
 
-##Para el Contador de como van 
-onready var labelW = get_node("Worker")
-onready var labelL = get_node("Ladron")
-onready var labelG = get_node("Guardian")
+
+onready var ProW = get_node("Progress Worker")
+onready var ProL = get_node("Progress Ladron")
+onready var ProG = get_node("Progress Guardian")
+
+onready var shop = preload("res://Shop.tscn")
+onready var shopsContainer = get_node("Shops")
+
 var timer
 
 
 func _ready():
+	randomize()
 	OS.set_window_position(screen_size*0.5 - window_size*0.5)
 	center = window_size/2
 	angle_step = 2.0*PI / (cantidadW + cantidadL + cantidadG)
@@ -45,6 +50,11 @@ func _ready():
 		botContainer.add_child(node)
 		angle += angle_step
 	
+	var direction = Vector2(cos(rand_range(0,360)), sin(rand_range(0,360)))
+	var node = shop.instance()
+	node.position = center + direction * rand_range(0,100)
+	shopsContainer.add_child(node)
+	
 	timer = Timer.new()
 	timer.connect("timeout",self,"_on_timer_timeout")
 	add_child(timer)
@@ -58,6 +68,9 @@ func _giveGuardians(m):
 			node.give_money(ceil(m/cantidadG))
 
 func _on_timer_timeout():
+	
+	### ESTE CODIGO ES UNA MIERDA tengo que abs
+	
 	var MW = 0.0
 	var ML = 0.0
 	var MG = 0.0
@@ -70,13 +83,12 @@ func _on_timer_timeout():
 			ML += node.get_money()
 		elif node.get_character() == 3:
 			MG += node.get_money()
+	var total =  MW+ML+MG
 
-	if (cantidadW > 0):
-		labelW.set_text(str(MW/cantidadW))
-	if (cantidadL > 0):
-		labelL.set_text(str(ML/cantidadL))
-	if (cantidadG > 0):
-		labelG.set_text(str(MG/cantidadG))
+	ProW._actualize(total,MW,cantidadW)
+	ProL._actualize(total,ML,cantidadL)
+	ProG._actualize(total,MG,cantidadG)
+
 	timer.start(1)
 
 

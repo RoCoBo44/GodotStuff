@@ -32,5 +32,14 @@ margin_bottom = 6.1912
 rect_scale = Vector2( 0.23, 0.23 )
 text = "4"
 align = 1
+
+[node name="LevelLabel" type="Label" parent="."]
+margin_left = 4.37124
+margin_top = -6.82973
+margin_right = 19.3712
+margin_bottom = 7.17027
+rect_scale = Vector2( 0.19, 0.17 )
+custom_colors/font_color = Color( 0.992157, 0.956863, 0.686275, 1 )
+text = "1"
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

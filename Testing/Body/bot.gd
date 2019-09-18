@@ -10,10 +10,25 @@ var movActual = 0
 export var movMaximo = 10
 var stop = false
 var ida
-var money = 0
+var money = 10
+var level = 0
 var timer
 var timDamaged
 var active = true
+
+func _ready():
+	randomize()
+	_cargar_movimientos()
+	maxIda = int(rand_range(50,200))
+	ida = maxIda
+	label.set_text(String(money))
+	$LevelLabel.set_text(str(level))
+	timer = Timer.new()
+	timer.connect("timeout",self,"_on_timer_timeout")
+	add_child(timer)
+	timDamaged = Timer.new()
+	timDamaged.connect("timeout",self,"_on_timDamage_timeout")
+	add_child(timDamaged)
 
 
 func get_input():
@@ -51,20 +66,6 @@ func _manual():
 	if Input.is_action_pressed('ui_up'):
 		velocity.y -= 1
 	velocity = velocity.normalized() * speed
-
-func _ready():
-	randomize()
-	_cargar_movimientos()
-	maxIda = int(rand_range(50,200))
-	ida = maxIda
-	label.set_text('0')
-
-	timer = Timer.new()
-	timer.connect("timeout",self,"_on_timer_timeout")
-	add_child(timer)
-	timDamaged = Timer.new()
-	timDamaged.connect("timeout",self,"_on_timDamage_timeout")
-	add_child(timDamaged)
 
 func _on_timer_timeout():
 	#print('time')
@@ -141,3 +142,8 @@ func _on_Area2D_area_entered(area):
 
 		#print("this ",get_character()," n : ",get_name(), " interacted with ",get_character()," n : ",area.get_parent().get_name())
 		interaction(area.get_parent())
+	elif area.get_name() == 'Shop' and area.can_levelUp(money,level):
+		money -= area.moneyToLevelUp(level)
+		level += 1
+		label.set_text(String(money))
+		$LevelLabel.set_text(str(level))

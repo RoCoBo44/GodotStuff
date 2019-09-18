@@ -26,7 +26,7 @@ func get_character():
 
 func interaction(otroBot):
 	if otroBot.get_character() == 2 and otroBot.is_active():
-		var newmoney = 15 #int(otroBot.get_money()*stealingRate)
+		var newmoney = 15 + 7*level#int(otroBot.get_money()*stealingRate)
 		if otroBot.get_money() > newmoney:
 			money += newmoney
 			otroBot.reduce_money(newmoney)

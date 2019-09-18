@@ -9,7 +9,6 @@ var monInc = 0.2
 func _ready():
 	#$Sprite.modulate = Color(2 ,2, 2)
 	$Sprite.modulate = Color(0 , 0.9, 0.4)
-	label.set_text('0')
 	pass
 	
 func _physics_process(delta):
@@ -19,7 +18,7 @@ func _physics_process(delta):
 	if (mov >= maxmov) and active:
 		mov = 0
 		#money = money + 10 + int(money*monInc) #parche para hacer sentir que tener plata en mano tambien esta bueno
-		money = money + 10
+		money = money + 10 + 5*level
 		bl = 1
 		#print(money)
 	if bl >= 1:

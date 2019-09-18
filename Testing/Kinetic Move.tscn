@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://root.gd" type="Script" id=1]
 [ext_resource path="res://Base.gd" type="Script" id=2]
 [ext_resource path="res://circle.png" type="Texture" id=3]
 [ext_resource path="res://Sprite.gd" type="Script" id=4]
+[ext_resource path="res://assets/barHorizontal_green.png" type="Texture" id=5]
+[ext_resource path="res://Progress Worker.gd" type="Script" id=6]
+[ext_resource path="res://assets/barHorizontal_red.png" type="Texture" id=7]
+[ext_resource path="res://Progress Ladron.gd" type="Script" id=8]
+[ext_resource path="res://Progress Guardian.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -13,6 +18,7 @@ script = ExtResource( 1 )
 [node name="botsContainer" type="Node" parent="."]
 
 [node name="Base" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 510.473, 304.628 )
 scale = Vector2( 25, 25 )
 script = ExtResource( 2 )
@@ -26,29 +32,75 @@ scale = Vector2( -0.054, 0.054 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
-[node name="Worker" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 87.9999
-margin_right = 78.0
-margin_bottom = 104.0
+[node name="Progress Worker" type="TextureProgress" parent="."]
+editor/display_folded = true
+margin_left = 17.0232
+margin_top = 143.149
+margin_right = 217.023
+margin_bottom = 183.149
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+tint_under = Color( 0.356863, 0.458824, 0.321569, 1 )
+tint_over = Color( 0.686275, 0.686275, 0.686275, 1 )
+tint_progress = Color( 0.25098, 0.909804, 0.278431, 1 )
+script = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="Progress Worker"]
+
+[node name="Label" type="Label" parent="Progress Worker"]
+margin_left = 11.9769
+margin_top = -55.1494
+margin_right = 60.9769
+margin_bottom = -39.1493
 rect_scale = Vector2( 2.83, 2.66 )
 custom_colors/font_color = Color( 0.529412, 0.929412, 0.462745, 1 )
 text = "Worker"
 
-[node name="Ladron" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 271.916
-margin_right = 78.0
-margin_bottom = 287.916
+[node name="Progress Ladron" type="TextureProgress" parent="."]
+editor/display_folded = true
+margin_left = 17.0232
+margin_top = 323.649
+margin_right = 217.023
+margin_bottom = 363.649
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 7 )
+tint_under = Color( 0.458824, 0.321569, 0.321569, 1 )
+tint_over = Color( 0.686275, 0.686275, 0.686275, 1 )
+script = ExtResource( 8 )
+
+[node name="Tween" type="Tween" parent="Progress Ladron"]
+
+[node name="Label" type="Label" parent="Progress Ladron"]
+margin_left = 11.9768
+margin_top = -51.7331
+margin_right = 60.9768
+margin_bottom = -35.7331
 rect_scale = Vector2( 2.83, 2.66 )
 custom_colors/font_color = Color( 0.937255, 0.384314, 0.384314, 1 )
 text = "Ladron"
 
-[node name="Guardian" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 458.453
-margin_right = 78.0
-margin_bottom = 474.453
+[node name="Progress Guardian" type="TextureProgress" parent="."]
+editor/display_folded = true
+margin_left = 17.0232
+margin_top = 509.805
+margin_right = 217.023
+margin_bottom = 549.805
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+tint_under = Color( 0.0627451, 0.180392, 0.635294, 1 )
+tint_over = Color( 0.686275, 0.686275, 0.686275, 1 )
+tint_progress = Color( 0.262745, 0.227451, 1, 1 )
+script = ExtResource( 9 )
+
+[node name="Tween" type="Tween" parent="Progress Guardian"]
+
+[node name="Label" type="Label" parent="Progress Guardian"]
+margin_left = 11.9768
+margin_top = -51.3523
+margin_right = 68.9768
+margin_bottom = -35.3523
 rect_scale = Vector2( 2.83, 2.66 )
 custom_colors/font_color = Color( 0.384314, 0.470588, 0.937255, 1 )
 text = "Guardian"
+
+[node name="Shops" type="Node" parent="."]
