@@ -10,6 +10,7 @@ var blinkMax = 100.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite.modulate = Color(1,0,0)
+	giveChanse = rand_range(0.0,0.2)
 
 func interaction(otroBot):
 	if otroBot.get_character() == 1 and otroBot.is_active():

@@ -14,6 +14,7 @@
 
 [node name="root" type="Node2D"]
 script = ExtResource( 1 )
+cantidadV = 4
 
 [node name="botsContainer" type="Node" parent="."]
 
@@ -33,7 +34,6 @@ texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="Progress Worker" type="TextureProgress" parent="."]
-editor/display_folded = true
 margin_left = 17.0232
 margin_top = 143.149
 margin_right = 217.023

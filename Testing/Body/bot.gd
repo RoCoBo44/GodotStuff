@@ -16,6 +16,8 @@ var timer
 var timDamaged
 var active = true
 
+var giveChanse = 0.0
+
 func _ready():
 	randomize()
 	_cargar_movimientos()
@@ -29,6 +31,7 @@ func _ready():
 	timDamaged = Timer.new()
 	timDamaged.connect("timeout",self,"_on_timDamage_timeout")
 	add_child(timDamaged)
+	giveChanse = rand_range(0.0,0.5)
 
 
 func get_input():
@@ -142,8 +145,20 @@ func _on_Area2D_area_entered(area):
 
 		#print("this ",get_character()," n : ",get_name(), " interacted with ",get_character()," n : ",area.get_parent().get_name())
 		interaction(area.get_parent())
-	elif area.get_name() == 'Shop' and area.can_levelUp(money,level):
+	elif area.get_name() == 'Shop' and area.can_levelUp(money,level) and get_character() != 0:
 		money -= area.moneyToLevelUp(level)
 		level += 1
 		label.set_text(String(money))
 		$LevelLabel.set_text(str(level))
+
+
+func _giveSome():
+	randomize()
+	var r = randf()
+	if (r <= giveChanse):
+		return int(rand_range(1.0, money))
+	return 0
+
+func receive_money(m):
+	money += m
+	label.set_text(String(money))

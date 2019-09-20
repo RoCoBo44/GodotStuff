@@ -7,11 +7,13 @@ extends Node2D
 export var cantidadW = 4
 export var cantidadL = 4
 export var cantidadG = 4
+export var cantidadV = 1
 var radius = 240
 var angle_step
 onready var botW = preload("res://Body/Worker.tscn")
 onready var botL = preload("res://Body/Ladron.tscn")
 onready var botG = preload("res://Body/Guardian.tscn")
+onready var botV = preload("res://Body/vagabundo.tscn")
 onready var botContainer = get_node("botsContainer")
 var center
 var screen_size = OS.get_screen_size()
@@ -32,10 +34,10 @@ func _ready():
 	randomize()
 	OS.set_window_position(screen_size*0.5 - window_size*0.5)
 	center = window_size/2
-	angle_step = 2.0*PI / (cantidadW + cantidadL + cantidadG)
+	angle_step = 2.0*PI / (cantidadW + cantidadL + cantidadG + cantidadV)
 	var angle = 0
 	var tam = 4
-	for i in range(cantidadL+cantidadW + cantidadG):
+	for i in range(cantidadL+cantidadW + cantidadG + cantidadV):
 		var direction = Vector2(cos(angle), sin(angle))
 		var node
 		if i < cantidadW:
@@ -44,6 +46,8 @@ func _ready():
 			node = botL.instance()
 		elif i < cantidadW + cantidadL + cantidadG:
 			node = botG.instance()
+		elif i < cantidadW + cantidadL + cantidadG + cantidadV:
+			node = botV.instance()
 		node.set_name("boti-".format(i))
 		node.scale = Vector2(tam,tam)
 		node.position = center + direction * radius
@@ -65,7 +69,7 @@ func _giveGuardians(m):
 		var node = botContainer.get_child(i)
 		
 		if node.get_character() == 3 and node.is_activeGuardian():
-			node.give_money(ceil(m/cantidadG))
+			node.receive_money(ceil(m/cantidadG))
 
 func _on_timer_timeout():
 	

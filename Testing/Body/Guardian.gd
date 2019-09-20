@@ -56,7 +56,3 @@ func _physics_process(delta):
 func is_activeGuardian():
 	return activeGuardian
 	
-
-func give_money(m):
-	money += m
-	label.set_text(String(money))
